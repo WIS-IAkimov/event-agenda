@@ -1,0 +1,3 @@
+<ng-container *ngFor="let session of sessions$ | async">
+  <app-statement-card class="mb-4" [session]="session"></app-statement-card>
+</ng-container>

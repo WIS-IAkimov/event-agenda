@@ -1,0 +1,7 @@
+<div class="card">
+  <div class="card-body">
+    <b>{{ session.startTimestamp | date: 'shortTime' }} - {{ session.endTimestamp | date: 'shortTime' }}</b>
+    <h4 class="card-title">{{ session.name }}</h4>
+    <p class="card-text">{{ session.abstract }}</p>
+  </div>
+</div>

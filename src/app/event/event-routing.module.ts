@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AgendaContainer } from './containers/agenda';
 
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./event/event.module').then((m) => m.EventModule),
+    component: AgendaContainer,
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class EventRoutingModule { }
