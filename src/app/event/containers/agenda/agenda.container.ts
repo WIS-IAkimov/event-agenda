@@ -11,6 +11,9 @@ import { Session } from '../../models/session.model';
   templateUrl: './agenda.container.html',
   styleUrls: ['./agenda.container.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'd-block container',
+  },
 })
 export class AgendaContainer implements OnInit {
 
