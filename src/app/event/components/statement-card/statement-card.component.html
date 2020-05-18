@@ -1,7 +1,15 @@
 <div class="card">
   <div class="card-body">
-    <b>{{ session.startTimestamp | date: 'shortTime' }} - {{ session.endTimestamp | date: 'shortTime' }}</b>
-    <h4 class="card-title">{{ session.name }}</h4>
+    <b class="text-muted">{{ session.startTimestamp | date: 'shortTime' }} - {{ session.endTimestamp | date: 'shortTime' }}</b>
+    <h3 class="card-title">{{ session.name }}</h3>
     <p class="card-text">{{ session.abstract }}</p>
+
+    <ng-container *ngIf="session.speakers?.length">
+      <div class="d-flex flex-wrap">
+        <ng-container *ngFor="let speaker of session.speakers">
+          <app-speaker class="mb-4 mr-2" [speakerIds]="speaker"></app-speaker>
+        </ng-container>
+      </div>
+    </ng-container>
   </div>
 </div>

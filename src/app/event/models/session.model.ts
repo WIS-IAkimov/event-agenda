@@ -1,6 +1,3 @@
-import { Speaker } from './speaker.model';
-
-
 export class Session {
   public id: string;
   public name: string;
@@ -23,6 +20,8 @@ export class Session {
     this.check = data.hasOwnProperty('check') ? data.check : this.check;
     this.startTimestamp = data.hasOwnProperty('start_timestamp') ? data['start_timestamp'] : this.startTimestamp;
     this.endTimestamp = data.hasOwnProperty('end_timestamp') ? data['end_timestamp'] : this.endTimestamp;
-    this.speakers = data.hasOwnProperty('speakers') ? data.speakers : this.speakers;
+    this.speakers = data.hasOwnProperty('speakers')
+      ? data.speakers.map((id) => id.toString())
+      : this.speakers;
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EventRoutingModule } from './event-routing.module';
 import { AgendaContainer } from './containers/agenda';
+import { SpeakerComponent } from './components/speaker';
 import { StatementCardComponent } from './components/statement-card';
 
 
@@ -13,6 +14,7 @@ import { StatementCardComponent } from './components/statement-card';
   ],
   declarations: [
     AgendaContainer,
+    SpeakerComponent,
     StatementCardComponent,
   ],
 })
