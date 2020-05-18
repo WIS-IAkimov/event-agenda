@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { Event, Speaker, Statement } from '../models';
+import { Session } from '../models/session.model';
 
 
 @Injectable({
@@ -14,13 +15,13 @@ export class EventStoreService {
 
   public event: Event;
   public readonly speakerMap = new Map<string, Speaker>([]);
-  private readonly _sessions$ = new BehaviorSubject<Statement[]>([]);
+  private readonly _sessions$ = new BehaviorSubject<Session[]>([]);
 
   constructor(
     private _httpClient: HttpClient,
   ) { }
 
-  get sessions$(): Observable<Statement[]> {
+  get sessions$(): Observable<Session[]> {
     return this._sessions$.asObservable();
   }
 
@@ -30,18 +31,13 @@ export class EventStoreService {
       )
       .pipe(
         tap((response) => {
-          this.event = new Event(response.event);
-
-          const sessionsGroups: Statement[] = Object.keys(response.schedules.sessions)
+          const sessions: Session[] = Object.keys(response.schedules.sessions)
             .map((key: string) => {
-              return response.schedules.sessions[key];
-            })
-            .map((group: any[]) => {
-              return group.map((item) => new Statement(item));
-            })
-            .reduce((acc, value) => acc.concat(value));
+              return new Session(key, response.schedules.sessions[key]);
+            });
 
-          this._sessions$.next(sessionsGroups);
+          this.event = new Event(response.event);
+          this._sessions$.next(sessions);
 
           response.schedules.speakers.forEach((item) => {
             const speaker = new Speaker(item);

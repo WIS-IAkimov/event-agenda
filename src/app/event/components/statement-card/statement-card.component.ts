@@ -14,7 +14,7 @@ import { Statement } from '../../models';
 export class StatementCardComponent implements OnInit {
 
   @Input()
-  public session: Statement;
+  public statement: Statement;
 
   constructor() { }
 

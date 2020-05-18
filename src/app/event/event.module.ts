@@ -5,6 +5,7 @@ import { EventRoutingModule } from './event-routing.module';
 import { AgendaContainer } from './containers/agenda';
 import { SpeakerComponent } from './components/speaker';
 import { StatementCardComponent } from './components/statement-card';
+import { SessionComponent } from './components/session';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { StatementCardComponent } from './components/statement-card';
     AgendaContainer,
     SpeakerComponent,
     StatementCardComponent,
+    SessionComponent,
   ],
 })
 export class EventModule {}
