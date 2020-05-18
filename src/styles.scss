@@ -1,3 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@use "~bootstrap/scss/bootstrap";
+$font-size-base: .875rem;
+
+@import "~bootstrap/scss/bootstrap";
+
