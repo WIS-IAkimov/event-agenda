@@ -1,4 +1,4 @@
-export class Session {
+export class Statement {
   public id: string;
   public name: string;
   public image: string;

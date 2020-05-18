@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Session } from '../../models';
+import { Statement } from '../../models';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { Session } from '../../models';
 export class StatementCardComponent implements OnInit {
 
   @Input()
-  public session: Session;
+  public session: Statement;
 
   constructor() { }
 

@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { Session } from '../../models';
+import { Statement } from '../../models';
 import { EventStoreService } from '../../services/event-store.service';
 
 
@@ -14,7 +14,7 @@ import { EventStoreService } from '../../services/event-store.service';
 })
 export class AgendaContainer implements OnInit {
 
-  public sessions$: Observable<Session[]>;
+  public sessions$: Observable<Statement[]>;
 
   constructor(
     private _eventService: EventStoreService,

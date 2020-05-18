@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { Event, Speaker, Session } from '../models';
+import { Event, Speaker, Statement } from '../models';
 
 
 @Injectable({
@@ -14,13 +14,13 @@ export class EventStoreService {
 
   public event: Event;
   public readonly speakerMap = new Map<string, Speaker>([]);
-  private readonly _sessions$ = new BehaviorSubject<Session[]>([]);
+  private readonly _sessions$ = new BehaviorSubject<Statement[]>([]);
 
   constructor(
     private _httpClient: HttpClient,
   ) { }
 
-  get sessions$(): Observable<Session[]> {
+  get sessions$(): Observable<Statement[]> {
     return this._sessions$.asObservable();
   }
 
@@ -32,12 +32,12 @@ export class EventStoreService {
         tap((response) => {
           this.event = new Event(response.event);
 
-          const sessionsGroups: Session[] = Object.keys(response.schedules.sessions)
+          const sessionsGroups: Statement[] = Object.keys(response.schedules.sessions)
             .map((key: string) => {
               return response.schedules.sessions[key];
             })
             .map((group: any[]) => {
-              return group.map((item) => new Session(item));
+              return group.map((item) => new Statement(item));
             })
             .reduce((acc, value) => acc.concat(value));
 
