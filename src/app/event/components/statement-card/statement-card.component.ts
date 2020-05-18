@@ -8,7 +8,7 @@ import { Statement } from '../../models';
   styleUrls: ['./statement-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'd-block',
+    class: 'd-block card',
   },
 })
 export class StatementCardComponent implements OnInit {
