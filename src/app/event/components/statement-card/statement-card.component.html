@@ -4,9 +4,9 @@
   <p class="card-text">{{ statement.abstract }}</p>
 
   <ng-container *ngIf="statement.speakers?.length">
-    <div class="d-flex flex-wrap">
+    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 ">
       <ng-container *ngFor="let speaker of statement.speakers">
-        <app-speaker class="mb-4 mr-2" [speakerIds]="speaker"></app-speaker>
+        <app-speaker class="col mb-4" [speakerIds]="speaker"></app-speaker>
       </ng-container>
     </div>
   </ng-container>
