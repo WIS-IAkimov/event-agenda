@@ -4,8 +4,8 @@ export class Statement {
   public image: string;
   public abstract: string;
   public check: number;
-  public startTimestamp: Date;
-  public endTimestamp: Date;
+  public startedAt: Date;
+  public endedAt: Date;
   public speakers: string[];
 
   constructor(data: any) {
@@ -18,8 +18,8 @@ export class Statement {
     this.image = data.hasOwnProperty('image') ? data.image : this.image;
     this.abstract = data.hasOwnProperty('abstract') ? data.abstract : this.abstract;
     this.check = data.hasOwnProperty('check') ? data.check : this.check;
-    this.startTimestamp = data.hasOwnProperty('start_timestamp') ? data['start_timestamp'] : this.startTimestamp;
-    this.endTimestamp = data.hasOwnProperty('end_timestamp') ? data['end_timestamp'] : this.endTimestamp;
+    this.startedAt = data.hasOwnProperty('start_timestamp') ? new Date(data['start_timestamp']) : this.startedAt;
+    this.endedAt = data.hasOwnProperty('end_timestamp') ? new Date(data['end_timestamp']) : this.endedAt;
     this.speakers = data.hasOwnProperty('speakers')
       ? data.speakers.map((id) => id.toString())
       : this.speakers;

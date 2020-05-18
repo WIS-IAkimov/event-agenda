@@ -2,7 +2,7 @@ import { Statement } from './statement.model';
 
 
 export class Session {
-  public startTimestamp: Date;
+  public startedAt: Date;
   public statements: Statement[];
 
   constructor(startTimestamp: string, data: any[]) {
@@ -10,7 +10,7 @@ export class Session {
   }
 
   private _fromJson(startTimestamp: string, data: any[]): void {
-    this.startTimestamp = new Date(+startTimestamp);
+    this.startedAt = new Date(+startTimestamp);
     this.statements = data.map((item) => new Statement(item));
   }
 }

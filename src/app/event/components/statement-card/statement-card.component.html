@@ -1,5 +1,5 @@
 <div class="card-body">
-  <b class="text-muted">{{ statement.startTimestamp | date: 'shortTime' }} - {{ statement.endTimestamp | date: 'shortTime' }}</b>
+  <b class="text-muted">{{ statement.startedAt | date: 'shortTime' }} - {{ statement.endedAt | date: 'shortTime' }}</b>
   <h3 class="card-title">{{ statement.name }}</h3>
   <p class="card-text">{{ statement.abstract }}</p>
 
