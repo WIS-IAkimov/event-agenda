@@ -13,7 +13,7 @@ export class Event {
     this._fromJson(data);
   }
 
-  public _fromJson(data: any): void {
+  private _fromJson(data: any): void {
     this.id = data.hasOwnProperty('id') ? data.id : this.id;
     this.name = data.hasOwnProperty('name') ? data.name : this.name;
     this.companyId = data.hasOwnProperty('company_id') ? data['company_id'] : this.companyId;
