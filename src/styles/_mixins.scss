@@ -1,0 +1,20 @@
+@use 'sass:meta';
+@use "sass:map";
+
+@use "variables";
+
+
+@mixin prop($property, $style, $important: false) {
+  $important-rule: if($important, '!important', '');
+
+  @if (map.has-key(variables.$property-values, $style)
+  ) {
+    $value: map.get(variables.$property-values, $style);
+
+    #{$property}: $value #{$important-rule};
+    #{$property}: var(--#{$style}, $value) #{$important-rule};
+    #{$property}: $style #{$important-rule};
+  } @else {
+    #{$property}: $style #{$important-rule};
+  }
+}

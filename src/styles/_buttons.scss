@@ -1,0 +1,10 @@
+@use "variables";
+
+.btn-primary {
+  background-color: var(--primary, variables.$primary);
+  border-color: var(--primary, variables.$primary);
+}
+
+.btn-outline-primary {
+  border-color: var(--primary, variables.$primary);
+}
