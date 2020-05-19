@@ -1,8 +1,25 @@
+interface ITrack {
+  name: string;
+  description: string;
+  title: string;
+  color: string;
+}
+
+interface IRoom {
+  id: number,
+  name: string,
+  floor: string,
+  number: string,
+  capacity: string
+}
+
 export class Statement {
   public id: string;
   public name: string;
   public image: string;
   public abstract: string;
+  public track: ITrack;
+  public room: IRoom[];
   public check: number;
   public startedAt: Date;
   public endedAt: Date;
@@ -18,6 +35,8 @@ export class Statement {
     this.image = data.hasOwnProperty('image') ? data.image : this.image;
     this.abstract = data.hasOwnProperty('abstract') ? data.abstract : this.abstract;
     this.check = data.hasOwnProperty('check') ? data.check : this.check;
+    this.track = data.hasOwnProperty('track') ? data.track : this.track;
+    this.room = data.hasOwnProperty('room') ? data.room : this.room;
     this.startedAt = data.hasOwnProperty('start_timestamp') ? new Date(data['start_timestamp']) : this.startedAt;
     this.endedAt = data.hasOwnProperty('end_timestamp') ? new Date(data['end_timestamp']) : this.endedAt;
     this.speakers = data.hasOwnProperty('speakers')
