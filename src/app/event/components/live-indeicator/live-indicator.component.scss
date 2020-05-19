@@ -1,0 +1,12 @@
+@use "src/styles/mixins";
+@use "src/styles/variables";
+
+:host {
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 4px;
+
+  @include mixins.prop('background-color', bg-color);
+  @include mixins.prop('color', variables.$red);
+  @include mixins.prop('border-color', variables.$red);
+}

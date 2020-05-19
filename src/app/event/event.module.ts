@@ -6,6 +6,7 @@ import { AgendaContainer } from './containers/agenda';
 import { SpeakerComponent } from './components/speaker';
 import { StatementCardComponent } from './components/statement-card';
 import { SessionComponent } from './components/session';
+import { LiveIndicatorComponent } from './components/live-indeicator';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SessionComponent } from './components/session';
     SpeakerComponent,
     StatementCardComponent,
     SessionComponent,
+    LiveIndicatorComponent,
   ],
 })
 export class EventModule {}

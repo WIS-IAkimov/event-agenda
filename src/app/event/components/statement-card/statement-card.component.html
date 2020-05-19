@@ -1,9 +1,9 @@
 <div class="card-body">
+  <app-live-indicator></app-live-indicator>
   <b class="text-muted">{{ statement.startedAt | date: 'shortTime' }} - {{ statement.endedAt | date: 'shortTime' }}</b>
   <h3 class="card-title mb-3">{{ statement.name }}</h3>
-  <p class="card-text mb-2" *ngIf="statement.abstract">{{ statement.abstract }}</p>
-
   <button class="btn btn-primary text-uppercase mb-2">Join Broadcast</button>
+  <p class="card-text mb-2" *ngIf="statement.abstract">{{ statement.abstract }}</p>
 
   <div>
     <b>Track: </b>

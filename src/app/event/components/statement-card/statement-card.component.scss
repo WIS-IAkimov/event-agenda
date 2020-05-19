@@ -1,3 +1,19 @@
+:host {
+  position: relative;
+
+  app-live-indicator {
+    display: none;
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+  }
+
+  &.live {
+    app-live-indicator {
+      display: inline-block;
+    }
+  }
+}
 app-speaker {
   max-width: 320px;
 }
