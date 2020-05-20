@@ -1,0 +1,7 @@
+<div class="row mt-5">
+  <div class="col-4">
+    <app-search></app-search>
+  </div>
+
+  <app-agenda class="d-block col-8" [search]="search$ | async"></app-agenda>
+</div>
