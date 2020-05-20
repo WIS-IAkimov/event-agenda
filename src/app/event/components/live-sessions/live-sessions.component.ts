@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { Statement } from '../../models';
+import { Session } from '../../models';
 import { EventStoreService } from '../../services/event-store.service';
 
 
@@ -12,14 +12,14 @@ import { EventStoreService } from '../../services/event-store.service';
   styleUrls: ['./live-sessions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LiveSessionsComponent implements OnInit {
+export class LiveSessionsComponent {
 
-  public readonly statements$: Observable<Statement[]>;
+  public readonly sessions$: Observable<Session[]>;
 
   constructor(
     private readonly _eventService: EventStoreService,
   ) {
-    this.statements$ = this._eventService.getLiveStatements();
+    this.sessions$ = this._eventService.getLiveSessions();
   }
 
 

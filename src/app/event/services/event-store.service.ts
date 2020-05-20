@@ -4,8 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 
-import { Event, Speaker, Statement } from '../models';
-import { Session } from '../models/session.model';
+import { Event, Speaker, Session } from '../models';
 
 
 @Injectable({
@@ -16,16 +15,11 @@ export class EventStoreService {
   public event: Event;
 
   private readonly _speakerMap = new Map<string, Speaker>([]);
-  private readonly _statements$ = new BehaviorSubject<Statement[]>([]);
   private readonly _sessions$ = new BehaviorSubject<Session[]>([]);
 
   constructor(
     private _httpClient: HttpClient,
   ) { }
-
-  get sessions$(): Observable<Session[]> {
-    return this._sessions$.asObservable();
-  }
 
   public getEvent(): Observable<any> {
     return this._httpClient.get<any>(
@@ -33,18 +27,16 @@ export class EventStoreService {
       )
       .pipe(
         tap((response) => {
-          const sessions: Session[] = Object.keys(response.schedules.sessions)
+          const sessions = Object.keys(response.schedules.sessions)
             .map((key: string) => {
-              return new Session(key, response.schedules.sessions[key]);
-            });
+              const items: any[] = response.schedules.sessions[key];
 
-          const statements = sessions
-            .map((session) => session.statements)
+              return items.map((item) => new Session(item));
+            })
             .reduce((acc, session) => acc.concat(session));
 
           this.event = new Event(response.event);
           this._sessions$.next(sessions);
-          this._statements$.next(statements);
 
           response.schedules.speakers.forEach((item) => {
             const speaker = new Speaker(item);
@@ -55,26 +47,26 @@ export class EventStoreService {
       );
   }
 
-  public getLiveStatements(): Observable<Statement[]> {
-    return this._statements$
+  public getLiveSessions(): Observable<Session[]> {
+    return this._sessions$
       .pipe(
-        map((statements) => {
-          return statements.filter((statement) => statement.live);
+        map((sessions) => {
+          return sessions.filter((session) => session.live);
         }),
       );
   }
 
-  public getStatements(search?: string): Observable<Statement[]> {
-    return this._statements$
+  public getSessions(search?: string): Observable<Session[]> {
+    return this._sessions$
       .pipe(
-        map((statements) => {
+        map((sessions) => {
           if (!search) {
-            return statements;
+            return sessions;
           }
 
-          return statements.filter((statement) => {
+          return sessions.filter((session) => {
             const lowerCaseSearch = search.toLowerCase();
-            const lowerCaseName = statement.name.toLowerCase();
+            const lowerCaseName = session.name.toLowerCase();
 
             return lowerCaseName.includes(lowerCaseSearch);
           })

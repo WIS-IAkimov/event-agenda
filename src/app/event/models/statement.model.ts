@@ -16,7 +16,7 @@ interface IRoom {
   capacity: string
 }
 
-export class Statement {
+export class Session {
   public id: string;
   public name: string;
   public image: string;

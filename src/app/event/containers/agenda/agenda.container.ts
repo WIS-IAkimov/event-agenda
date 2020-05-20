@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
 
 import { EventStoreService } from '../../services/event-store.service';
-import { Statement } from '../../models';
+import { Session } from '../../models';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class AgendaContainer implements OnChanges, OnInit {
   @Input()
   public search: string;
 
-  public readonly statements$ = new BehaviorSubject<Statement[]>([]);
+  public readonly sessions$ = new BehaviorSubject<Session[]>([]);
 
   private readonly _destroy$ = new Subject<void>();
 
@@ -35,21 +35,21 @@ export class AgendaContainer implements OnChanges, OnInit {
 
   public ngOnChanges(changes: SimpleChanges) {
     if (!changes.search.firstChange) {
-      this._getStatements(this.search);
+      this._getSessions(this.search);
     }
   }
 
   public ngOnInit() {
-    this._getStatements(this.search);
+    this._getSessions(this.search);
   }
 
-  private _getStatements(search?: string) {
-    this._eventService.getStatements(search)
+  private _getSessions(search?: string) {
+    this._eventService.getSessions(search)
       .pipe(
         takeUntil(this._destroy$),
       )
-      .subscribe((statements) => {
-        this.statements$.next(statements);
+      .subscribe((sessions) => {
+        this.sessions$.next(sessions);
       });
 
   }

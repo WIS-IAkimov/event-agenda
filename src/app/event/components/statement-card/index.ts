@@ -1,1 +1,1 @@
-export { StatementCardComponent } from './statement-card.component';
+export { SessionCardComponent } from './session-card.component';
