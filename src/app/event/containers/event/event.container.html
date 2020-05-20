@@ -1,0 +1,19 @@
+<ng-template [ngIf]="event$ | async" [ngIfThen]="eventTmpl" [ngIfElse]="loadingTmpl"></ng-template>
+
+<ng-template #eventTmpl>
+  <div class="col-4">
+    <app-live-sessions></app-live-sessions>
+  </div>
+
+  <div class="col-8">
+    <app-search class="mb-4"></app-search>
+    <app-agenda [search]="search"></app-agenda>
+  </div>
+</ng-template>
+
+<ng-template #loadingTmpl>
+  <div class="d-flex justify-content-center w-100">
+    <div class="spinner-border loading text-primary" role="status">
+    </div>
+  </div>
+</ng-template>

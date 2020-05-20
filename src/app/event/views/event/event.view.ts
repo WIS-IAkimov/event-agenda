@@ -6,7 +6,6 @@ import { pluck } from 'rxjs/operators';
 
 
 @Component({
-  selector: 'app-event',
   templateUrl: './event.view.html',
   styleUrls: ['./event.view.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

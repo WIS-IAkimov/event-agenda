@@ -10,6 +10,8 @@ import { SessionComponent } from './components/session';
 import { LiveIndicatorComponent } from './components/live-indeicator';
 import { SearchComponent } from './components/search';
 import { EventView } from './views/event';
+import { EventContainer } from './containers/event';
+import { LiveSessionsComponent } from './components/live-sessions';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { EventView } from './views/event';
     SessionComponent,
     LiveIndicatorComponent,
     SearchComponent,
+    EventContainer,
+    LiveSessionsComponent,
   ],
 })
 export class EventModule {}

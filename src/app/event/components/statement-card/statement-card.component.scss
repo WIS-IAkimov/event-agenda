@@ -1,5 +1,13 @@
+@use "src/styles/mixins";
+@use "src/styles/variables";
+
+
 :host {
   position: relative;
+
+  &.live {
+    @include mixins.prop('border-color', variables.$red);
+  }
 
   app-live-indicator {
     display: none;

@@ -1,7 +1,8 @@
-
 <ng-container *ngFor="let statement of statements$ | async">
   <app-statement-card
     class="mb-4"
+    [id]="statement.id"
+    [class.live]="statement.live"
     [statement]="statement">
   </app-statement-card>
 </ng-container>

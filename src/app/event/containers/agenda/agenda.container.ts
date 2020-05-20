@@ -30,7 +30,7 @@ export class AgendaContainer implements OnChanges, OnInit {
   private readonly _destroy$ = new Subject<void>();
 
   constructor(
-    private _eventService: EventStoreService,
+    private readonly _eventService: EventStoreService,
   ) { }
 
   public ngOnChanges(changes: SimpleChanges) {
@@ -41,7 +41,6 @@ export class AgendaContainer implements OnChanges, OnInit {
 
   public ngOnInit() {
     this._getStatements(this.search);
-    this._eventService.getEvent().subscribe();
   }
 
   private _getStatements(search?: string) {
