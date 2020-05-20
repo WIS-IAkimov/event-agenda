@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.inputControl.setValue(
-      this._activatedRoute.snapshot.queryParams?.search,
+      this._activatedRoute.snapshot.queryParams.search,
       { emitEvent: false },
     );
     this.inputControl.valueChanges
