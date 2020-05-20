@@ -27,6 +27,7 @@ export class Session {
   public startedAt: Date;
   public endedAt: Date;
   public speakers: string[];
+  public broadcastLink: string;
 
   public live: boolean;
 
@@ -42,6 +43,7 @@ export class Session {
     this.check = data.hasOwnProperty('check') ? data.check : this.check;
     this.track = data.hasOwnProperty('track') ? data.track : this.track;
     this.room = data.hasOwnProperty('room') ? data.room : this.room;
+    this.broadcastLink = data.hasOwnProperty('broadcast') ? data.broadcast : this.broadcastLink;
     this.startedAt = data.hasOwnProperty('start_timestamp') ? new Date(data['start_timestamp']) : this.startedAt;
     this.endedAt = data.hasOwnProperty('end_timestamp') ? new Date(data['end_timestamp']) : this.endedAt;
     this.speakers = data.hasOwnProperty('speakers')

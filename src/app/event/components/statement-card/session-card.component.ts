@@ -20,4 +20,8 @@ export class SessionCardComponent implements OnInit {
 
   public ngOnInit() {}
 
+  public join(): void {
+    window.open(this.session.broadcastLink, '_blank');
+  }
+
 }
