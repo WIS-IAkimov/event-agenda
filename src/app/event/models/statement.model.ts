@@ -1,3 +1,6 @@
+import { isAfter, isBefore } from 'date-fns';
+
+
 interface ITrack {
   name: string;
   description: string;
@@ -25,6 +28,8 @@ export class Statement {
   public endedAt: Date;
   public speakers: string[];
 
+  public live: boolean;
+
   constructor(data: any) {
    this._fromJson(data);
   }
@@ -42,5 +47,7 @@ export class Statement {
     this.speakers = data.hasOwnProperty('speakers')
       ? data.speakers.map((id) => id.toString())
       : this.speakers;
+
+    this.live = isAfter(new Date(), this.startedAt) && isBefore(new Date(), this.endedAt);
   }
 }

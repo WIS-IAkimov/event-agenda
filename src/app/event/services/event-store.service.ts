@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 import { Event, Speaker, Statement } from '../models';
 import { Session } from '../models/session.model';
@@ -14,7 +14,9 @@ import { Session } from '../models/session.model';
 export class EventStoreService {
 
   public event: Event;
-  public readonly speakerMap = new Map<string, Speaker>([]);
+
+  private readonly _speakerMap = new Map<string, Speaker>([]);
+  private readonly _statements$ = new BehaviorSubject<Statement[]>([]);
   private readonly _sessions$ = new BehaviorSubject<Session[]>([]);
 
   constructor(
@@ -36,21 +38,52 @@ export class EventStoreService {
               return new Session(key, response.schedules.sessions[key]);
             });
 
+          const statements = sessions
+            .map((session) => session.statements)
+            .reduce((acc, session) => acc.concat(session));
+
           this.event = new Event(response.event);
           this._sessions$.next(sessions);
+          this._statements$.next(statements);
 
           response.schedules.speakers.forEach((item) => {
             const speaker = new Speaker(item);
 
-            this.speakerMap.set(speaker.id, speaker);
+            this._speakerMap.set(speaker.id, speaker);
           });
         }),
       );
   }
 
-  public getSpeaker(id: string): Speaker {
-    return this.speakerMap.get(id);
+  public getLiveStatements(): Observable<Statement[]> {
+    return this._statements$
+      .pipe(
+        map((statements) => {
+          return statements.filter((statement) => statement.live);
+        }),
+      );
   }
 
+  public getStatements(search?: string): Observable<Statement[]> {
+    return this._statements$
+      .pipe(
+        map((statements) => {
+          if (!search) {
+            return statements;
+          }
+
+          return statements.filter((statement) => {
+            const lowerCaseSearch = search.toLowerCase();
+            const lowerCaseName = statement.name.toLowerCase();
+
+            return lowerCaseName.includes(lowerCaseSearch);
+          })
+        })
+      )
+  }
+
+  public getSpeaker(id: string): Speaker {
+    return this._speakerMap.get(id);
+  }
 
 }
