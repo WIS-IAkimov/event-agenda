@@ -1,8 +1,12 @@
-<ng-container *ngFor="let session of sessions$ | async">
-  <app-session-card
-    class="mb-4"
-    [id]="session.id"
-    [class.live]="session.live"
-    [session]="session">
-  </app-session-card>
+<ng-container *ngFor="let group of groups$ | async">
+  <h3 class="mb-4 text-muted">{{ group.startedAt | date: 'longDate'}}</h3>
+
+  <ng-container *ngFor="let session of group.sessions">
+    <app-session-card
+      class="mb-4"
+      [id]="session.id"
+      [class.live]="session.live"
+      [session]="session">
+    </app-session-card>
+  </ng-container>
 </ng-container>

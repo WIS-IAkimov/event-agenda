@@ -10,8 +10,16 @@ import {
 import { takeUntil } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
 
+import { differenceInDays } from 'date-fns';
+
 import { EventStoreService } from '../../services/event-store.service';
 import { Session } from '../../models';
+
+
+interface ISessionGroup {
+  startedAt: Date,
+  sessions: Session[],
+}
 
 
 @Component({
@@ -25,7 +33,7 @@ export class AgendaComponent implements OnChanges, OnInit {
   @Input()
   public search: string;
 
-  public readonly sessions$ = new BehaviorSubject<Session[]>([]);
+  public readonly groups$ = new BehaviorSubject<ISessionGroup[]>([]);
 
   private readonly _destroy$ = new Subject<void>();
 
@@ -49,7 +57,21 @@ export class AgendaComponent implements OnChanges, OnInit {
         takeUntil(this._destroy$),
       )
       .subscribe((sessions) => {
-        this.sessions$.next(sessions);
+        const days = sessions
+          .map((item) => item.startedAt)
+          .reduce((acc: Date[], value: Date) => {
+            const index = acc.findIndex((item) => differenceInDays(item, value) === 0);
+
+            return index == -1 ? [...acc, value] : acc;
+          }, []);
+        const groups: ISessionGroup[] = days.map((day: Date) => {
+          return {
+            startedAt: day,
+            sessions: sessions.filter((session) => differenceInDays(day, session.startedAt) === 0),
+          };
+        });
+
+        this.groups$.next(groups);
       });
 
   }
