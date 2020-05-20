@@ -16,11 +16,11 @@ import { Session } from '../../models';
 
 @Component({
   selector: 'app-agenda',
-  templateUrl: './agenda.container.html',
-  styleUrls: ['./agenda.container.scss'],
+  templateUrl: './agenda.component.html',
+  styleUrls: ['./agenda.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AgendaContainer implements OnChanges, OnInit {
+export class AgendaComponent implements OnChanges, OnInit {
 
   @Input()
   public search: string;

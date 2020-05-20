@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { EventRoutingModule } from './event-routing.module';
-import { AgendaContainer } from './containers/agenda';
+import { AgendaComponent } from './components/agenda';
 import { SpeakerComponent } from './components/speaker';
 import { SessionCardComponent } from './components/statement-card';
 import { LiveIndicatorComponent } from './components/live-indeicator';
@@ -21,7 +21,7 @@ import { LiveSessionsComponent } from './components/live-sessions';
   ],
   declarations: [
     EventView,
-    AgendaContainer,
+    AgendaComponent,
     SpeakerComponent,
     SessionCardComponent,
     LiveIndicatorComponent,
