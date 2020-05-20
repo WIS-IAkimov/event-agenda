@@ -1,8 +1,8 @@
-@use "variables";
+@import "variables";
 
 
 .btn {
-  font-size: var(--font-size, variables.$font-size-base);
+  font-size: var(--font-size, $font-size-base);
   position: relative;
 
   &:hover {
@@ -19,22 +19,22 @@
 }
 
 .btn-primary {
-  background-color: var(--primary, variables.$primary);
-  border-color: var(--primary, variables.$primary);
-  color: var(--on-primary, variables.$on-primary);
+  background-color: var(--primary, $primary);
+  border-color: var(--primary, $primary);
+  color: var(--on-primary, $on-primary);
 
   &:hover, &:active, &:focus {
-    background-color: var(--primary, variables.$primary);
-    border-color: var(--primary, variables.$primary);
+    background-color: var(--primary, $primary);
+    border-color: var(--primary, $primary);
   }
 }
 
 .btn-outline-primary {
-  border-color: var(--primary, variables.$primary);
+  border-color: var(--primary, $primary);
 
   &:hover, &:active, &:focus {
-    color: var(--on-primary, variables.$on-primary);
-    background-color: var(--primary, variables.$primary);
-    border-color: var(--primary, variables.$primary);
+    color: var(--on-primary, $on-primary);
+    background-color: var(--primary, $primary);
+    border-color: var(--primary, $primary);
   }
 }
