@@ -1,13 +1,12 @@
-
 @import "variables";
 
 
 @mixin prop($property, $style, $important: false) {
   $important-rule: if($important, '!important', '');
 
-  @if (map_has-key($property-values, $style)
+  @if (map-has-key($property-values, $style)
   ) {
-    $value: map_get($property-values, $style);
+    $value: map-get($property-values, $style);
 
     #{$property}: $value #{$important-rule};
     #{$property}: var(--#{$style}, $value) #{$important-rule};

@@ -1,0 +1,7 @@
+@import "variables";
+
+:root {
+  @each $style in map-keys($property-values) {
+    --#{$style}: #{map-get($property-values, $style)};
+  }
+}
