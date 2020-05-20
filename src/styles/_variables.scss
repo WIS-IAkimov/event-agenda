@@ -6,9 +6,11 @@ $font-family-base: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 
 $blue: #007bff;
 $red: #dc3545;
+$white: #fff;
 
 $primary: $blue;
-$background: #fff;
+$on-primary: $white;
+$background: $white;
 
 $spacers: (
   0: 0,
@@ -38,6 +40,7 @@ $property-values: (
   font-family: $font-family-base,
   space: $spacer,
   primary: $primary,
+  on-primary: $on-primary,
   bg-color: $background,
 );
 
