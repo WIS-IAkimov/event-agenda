@@ -1,15 +1,40 @@
 @use "variables";
 
+
 .btn {
   font-size: var(--font-size, variables.$font-size-base);
+  position: relative;
+
+  &:hover {
+    &:before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, .1);
+    }
+  }
 }
 
 .btn-primary {
   background-color: var(--primary, variables.$primary);
   border-color: var(--primary, variables.$primary);
   color: var(--on-primary, variables.$on-primary);
+
+  &:hover, &:active, &:focus {
+    background-color: var(--primary, variables.$primary);
+    border-color: var(--primary, variables.$primary);
+  }
 }
 
 .btn-outline-primary {
   border-color: var(--primary, variables.$primary);
+
+  &:hover, &:active, &:focus {
+    color: var(--on-primary, variables.$on-primary);
+    background-color: var(--primary, variables.$primary);
+    border-color: var(--primary, variables.$primary);
+  }
 }
