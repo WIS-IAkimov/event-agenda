@@ -1,14 +1,14 @@
-$font-size-base: .875rem;
-$spacer: 1rem;
-$font-family-base: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-size-base: .875rem !default;
+$spacer: 1rem !default;
+$font-family-base: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
-$blue: #007bff;
-$red: #dc3545;
-$white: #fff;
+$blue: #007bff !default;
+$red: #dc3545 !default;
+$white: #fff !default;
 
-$primary: $blue;
-$on-primary: $white;
-$background: $white;
+$primary: $blue !default;
+$on-primary: $white !default;
+$background: $white !default;
 
 $spacers: (
   0: 0,
