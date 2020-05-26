@@ -1,8 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
 
 
 @Component({
@@ -15,18 +14,14 @@ import { pluck } from 'rxjs/operators';
 })
 export class EventView implements OnInit {
 
-  public search$: Observable<string>;
+  public queryParams$: Observable<Params>;
 
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
   ) { }
 
   public ngOnInit() {
-    this.search$ = this._activatedRoute
-      .queryParams
-      .pipe(
-        pluck('search'),
-      );
+    this.queryParams$ = this._activatedRoute.queryParams;
   }
 
 }

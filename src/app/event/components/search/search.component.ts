@@ -48,7 +48,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           search,
         };
 
-        this._router.navigate([], { queryParams });
+        this._router.navigate([], { queryParams, queryParamsHandling: 'merge' });
       });
   }
 

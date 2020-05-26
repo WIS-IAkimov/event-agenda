@@ -1,5 +1,15 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  Input,
+  Component,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { Params } from '@angular/router';
+
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { EventStoreService } from '../../services/event-store.service';
 
 
@@ -12,19 +22,36 @@ import { EventStoreService } from '../../services/event-store.service';
     class: 'd-flex row',
   },
 })
-export class EventContainer implements OnInit {
+export class EventContainer implements OnChanges {
 
   @Input()
-  public search: string;
+  public queryParams: Params;
 
-  public event$: Observable<Event>;
+
+  private readonly _destroy = new Subject<void>();
+  private readonly _event$ = new BehaviorSubject<Event>(null);
 
   constructor(
     private readonly _eventService: EventStoreService,
   ) { }
 
-  public ngOnInit() {
-    this.event$ = this._eventService.getEvent();
+  get event$(): Observable<Event> {
+    return this._event$.asObservable();
+  }
+
+  public ngOnChanges(changes: SimpleChanges) {
+    if (!this.queryParams?.event || !this.queryParams?.token) { return; }
+
+    this._getEvent();
+  }
+
+  private _getEvent(): void {
+    this._eventService
+      .getEvent(this.queryParams.event, this.queryParams.token)
+      .pipe(
+        takeUntil(this._destroy),
+      )
+      .subscribe((event) => this._event$.next(event));
   }
 
 }

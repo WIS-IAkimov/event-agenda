@@ -21,9 +21,13 @@ export class EventStoreService {
     private _httpClient: HttpClient,
   ) { }
 
-  public getEvent(): Observable<any> {
+  public getEvent(id: string, token: string): Observable<any> {
+    this._speakerMap.clear();
+    this._sessions$.next([]);
+
     return this._httpClient.get<any>(
-      'https://app.highattendance.com/api/v2/events/710?token=https://app.highattendance.com/api/v2/events?company_id=98&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwcC5oaWdoYXR0ZW5kYW5jZS5jb20vYXBpL3YyL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTU4Nzk5MDg4MCwiZXhwIjoxNjE0OTkwODgwLCJuYmYiOjE1ODc5OTA4ODAsImp0aSI6ImJadVhuSVlwWm1ZN0JOeTYiLCJzdWIiOjM5NTksInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.ici87OpTYeO8g3hnawv16RJcOQ6fRSOe0vLvm1K2FgI',
+      `https://app.highattendance.com/api/v2/events/${id}`,
+      { params: { token } },
       )
       .pipe(
         tap((response) => {
@@ -69,9 +73,9 @@ export class EventStoreService {
             const lowerCaseName = session.name.toLowerCase();
 
             return lowerCaseName.includes(lowerCaseSearch);
-          })
-        })
-      )
+          });
+        }),
+      );
   }
 
   public getSpeaker(id: string): Speaker {
