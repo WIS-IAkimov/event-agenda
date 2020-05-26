@@ -6,11 +6,12 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./event/event.module').then((m) => m.EventModule),
-  }
+  },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { anchorScrolling: 'enabled' })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,4 +1,5 @@
 export class Speaker {
+
   public id: string;
   public firstName: string;
   public lastName: string;
@@ -36,4 +37,5 @@ export class Speaker {
     this.linkedin = data.hasOwnProperty('linkedin') ? data.linkedin : this.linkedin;
     this.twitter = data.hasOwnProperty('twitter') ? data.twitter : this.twitter;
   }
+
 }

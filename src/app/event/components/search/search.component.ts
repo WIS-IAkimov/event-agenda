@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import {
   map,
-  debounceTime,
   takeUntil,
+  debounceTime,
   distinctUntilChanged,
 } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -18,7 +18,7 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'd-block',
-  }
+  },
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
@@ -52,7 +52,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       });
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
   }

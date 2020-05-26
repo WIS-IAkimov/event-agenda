@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+
 import { Session } from '../../models';
 
 
@@ -18,7 +19,7 @@ export class SessionCardComponent implements OnInit {
 
   constructor() { }
 
-  public ngOnInit() {}
+  public ngOnInit(): void {}
 
   public join(): void {
     window.open(this.session.broadcastLink, '_blank');

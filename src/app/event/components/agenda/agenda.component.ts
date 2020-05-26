@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Input,
   OnChanges,
-  SimpleChanges,
+  SimpleChanges, OnDestroy,
 } from '@angular/core';
 
 import { takeUntil } from 'rxjs/operators';
@@ -17,8 +17,8 @@ import { Session } from '../../models';
 
 
 interface ISessionGroup {
-  startedAt: Date,
-  sessions: Session[],
+  startedAt: Date;
+  sessions: Session[];
 }
 
 
@@ -28,7 +28,7 @@ interface ISessionGroup {
   styleUrls: ['./agenda.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AgendaComponent implements OnChanges, OnInit {
+export class AgendaComponent implements OnChanges, OnInit, OnDestroy {
 
   @Input()
   public search: string;
@@ -41,17 +41,22 @@ export class AgendaComponent implements OnChanges, OnInit {
     private readonly _eventService: EventStoreService,
   ) { }
 
-  public ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (!changes.search.firstChange) {
       this._getSessions(this.search);
     }
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this._getSessions(this.search);
   }
 
-  private _getSessions(search?: string) {
+  public ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
+  private _getSessions(search?: string): void {
     this._eventService.getSessions(search)
       .pipe(
         takeUntil(this._destroy$),
@@ -62,8 +67,9 @@ export class AgendaComponent implements OnChanges, OnInit {
           .reduce((acc: Date[], value: Date) => {
             const index = acc.findIndex((item) => differenceInDays(item, value) === 0);
 
-            return index == -1 ? [...acc, value] : acc;
+            return index === -1 ? [...acc, value] : acc;
           }, []);
+
         const groups: ISessionGroup[] = days.map((day: Date) => {
           return {
             startedAt: day,
@@ -73,7 +79,6 @@ export class AgendaComponent implements OnChanges, OnInit {
 
         this.groups$.next(groups);
       });
-
   }
 
 }

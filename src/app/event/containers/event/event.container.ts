@@ -1,6 +1,7 @@
 import {
   Input,
   Component,
+  OnDestroy,
   OnChanges,
   SimpleChanges,
   ChangeDetectionStrategy,
@@ -22,13 +23,12 @@ import { EventStoreService } from '../../services/event-store.service';
     class: 'd-flex row',
   },
 })
-export class EventContainer implements OnChanges {
+export class EventContainer implements OnChanges, OnDestroy {
 
   @Input()
   public queryParams: Params;
 
-
-  private readonly _destroy = new Subject<void>();
+  private readonly _destroy$ = new Subject<void>();
   private readonly _event$ = new BehaviorSubject<Event>(null);
 
   constructor(
@@ -39,17 +39,22 @@ export class EventContainer implements OnChanges {
     return this._event$.asObservable();
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (!this.queryParams?.event || !this.queryParams?.token) { return; }
 
     this._getEvent();
+  }
+
+  public ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   private _getEvent(): void {
     this._eventService
       .getEvent(this.queryParams.event, this.queryParams.token)
       .pipe(
-        takeUntil(this._destroy),
+        takeUntil(this._destroy$),
       )
       .subscribe((event) => this._event$.next(event));
   }

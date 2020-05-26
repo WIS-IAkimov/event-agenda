@@ -18,7 +18,7 @@ export class EventStoreService {
   private readonly _sessions$ = new BehaviorSubject<Session[]>([]);
 
   constructor(
-    private _httpClient: HttpClient,
+    private readonly _httpClient: HttpClient,
   ) { }
 
   public getEvent(id: string, token: string): Observable<any> {

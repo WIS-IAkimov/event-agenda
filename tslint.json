@@ -551,7 +551,7 @@
     "rxjs-no-create": true,
     "rxjs-no-do": false,
     "rxjs-no-explicit-generics": false,
-    "rxjs-no-exposed-subjects": true,
+//    "rxjs-no-exposed-subjects": true,
     "rxjs-no-index": true,
     "rxjs-no-internal": true,
     "rxjs-no-nested-subscribe": true,

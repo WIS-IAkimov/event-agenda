@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 
 @Component({
@@ -10,11 +10,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     class: 'px-1',
   },
 })
-export class LiveIndicatorComponent implements OnInit {
+export class LiveIndicatorComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

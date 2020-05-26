@@ -20,7 +20,7 @@ export class EventView implements OnInit {
     private readonly _activatedRoute: ActivatedRoute,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.queryParams$ = this._activatedRoute.queryParams;
   }
 
