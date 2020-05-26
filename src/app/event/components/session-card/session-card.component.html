@@ -12,7 +12,7 @@
 
   <div>
     <b>Room: </b>
-    <ng-container *ngFor="let room of session.room">
+    <ng-container *ngFor="let room of session.room; trackBy: trackByRoomId">
       <span>{{ room.name }}</span>
       <span class="text-muted"> ({{ room.floor }} floor)</span>
     </ng-container>

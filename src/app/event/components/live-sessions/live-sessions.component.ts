@@ -22,5 +22,9 @@ export class LiveSessionsComponent {
     this.sessions$ = this._eventService.getLiveSessions();
   }
 
+  public trackById(index: number, item: Session): string {
+    return item.id;
+  }
+
 
 }

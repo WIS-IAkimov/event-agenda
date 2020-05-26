@@ -629,7 +629,7 @@
     "template-conditional-complexity": true,
     "template-cyclomatic-complexity": false,
     "template-no-call-expression": false,
-    "template-use-track-by-function": true,
+//    "template-use-track-by-function": true,
     "use-component-selector": false,
     "use-component-view-encapsulation": false,
     "use-pipe-decorator": true,
@@ -637,7 +637,6 @@
     "angular-whitespace": [
       true,
       "check-interpolation",
-      "check-pipe",
       "check-semicolon"
     ],
     "component-class-suffix": [

@@ -56,6 +56,10 @@ export class AgendaComponent implements OnChanges, OnInit, OnDestroy {
     this._destroy$.complete();
   }
 
+  public trackById(index: number, item: Session): string {
+    return item.id;
+  }
+
   private _getSessions(search?: string): void {
     this._eventService.getSessions(search)
       .pipe(

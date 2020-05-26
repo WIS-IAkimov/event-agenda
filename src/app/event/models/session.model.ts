@@ -9,7 +9,7 @@ interface ITrack {
   color: string;
 }
 
-interface IRoom {
+export interface IRoom {
 
   id: number;
   name: string;

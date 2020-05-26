@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Session } from '../../models';
+import { Session, IRoom } from '../../models';
 
 
 @Component({
@@ -23,6 +23,10 @@ export class SessionCardComponent implements OnInit {
 
   public join(): void {
     window.open(this.session.broadcastLink, '_blank');
+  }
+
+  public trackByRoomId(index: number, item: IRoom): number {
+    return item.id;
   }
 
 }
